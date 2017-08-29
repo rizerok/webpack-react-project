@@ -14,7 +14,8 @@ module.exports = {
         app:path.resolve('app','app.js')
     },
     output:{
-        filename:path.join('bundle','[name].js')
+        filename:path.join('bundle','[name].js'),
+        publicPath:'/'
     },
     resolve:{
         alias:{
@@ -51,29 +52,30 @@ module.exports = {
             {
                 test:/\.styl$/,
                 use:extractStylus.extract({
-                    fallback: "style-loader",
+                    fallback: 'style-loader',
                     use:[{
-                            loader: 'css-loader',
-                            options: {
-                                importLoaders: 2
-                            }
-                        },
-                        {
-                            loader:'postcss-loader',
-                            options:{
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader:'stylus-loader'
-                        }]
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2
+                        }
+                    },
+                    {
+                        loader:'postcss-loader',
+                        options:{
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader:'stylus-loader'
+                    }]
                 })
             }
         ]
     },
     devServer:{
         port:3000,
-        open:true
+        open:true,
+        historyApiFallback: true
     },
     plugins:[
         extractStylus,

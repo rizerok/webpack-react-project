@@ -16,7 +16,10 @@
         "indent": [
             "error",
             4,
-            { "SwitchCase": 1 }
+            {
+                "SwitchCase": 1,
+                "ignoredNodes": ["JSXElement *"]//ESLint v4.5.0
+            }
         ],
         "linebreak-style": [
             "error",
@@ -36,5 +39,9 @@
         "no-unused-vars": 0,
         "no-useless-escape":0,
         "no-undef":0
+        //"react/jsx-indent-props":"error"
     }
+//    "plugins":[
+//        "react"
+//    ]
 }
