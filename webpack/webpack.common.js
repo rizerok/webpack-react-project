@@ -56,7 +56,11 @@ module.exports = {
                     use:[{
                         loader: 'css-loader',
                         options: {
-                            importLoaders: 2
+                            sourceMap:true,
+                            modules: true,
+                            importModules:2,
+                            //https://github.com/webpack/loader-utils#interpolatename
+                            localIdentName: '[name]__[local]-[hash:base64:5]'
                         }
                     },
                     {

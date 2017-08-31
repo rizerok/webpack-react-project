@@ -26,10 +26,15 @@ class Excel extends React.Component{
             edit:null,//{row:index,cell:index}
             search:false
         };
+
+        this._preSearchData = null;
+
         this._sort = this._sort.bind(this);
         this._showEditor = this._showEditor.bind(this);
         this._save = this._save.bind(this);
         this._toggleSearch = this._toggleSearch.bind(this);
+        this._search = this._search.bind(this);
+        //this._download = this._download.bind(this);
     }
     _sort(e){
         let col = e.target.cellIndex;
@@ -63,8 +68,6 @@ class Excel extends React.Component{
 
         data[this.state.edit.row][this.state.edit.cell] = input.value;
 
-        console.log(input,data,this.state.edit.row,this.state.edit.cell);
-
         this.setState({
             edit:null,
             data:data
@@ -74,9 +77,9 @@ class Excel extends React.Component{
         if(this.state.search){
             this.setState({
                 search:false,
-                data:this.preSearchData
+                data:this._preSearchData
             });
-            this.preSearchData = null;
+            this._preSearchData = null;
         }else{
             this._preSearchData = this.state.data;
             this.setState({
@@ -84,8 +87,43 @@ class Excel extends React.Component{
             });
         }
     }
-    _search(){
-        
+    _search(e){
+        let needle = e.target.value.toLowerCase();
+        if(!needle){
+            this.setState({
+                data:this._preSearchData
+            });
+            return;
+        }
+        let idx = e.target.dataset.idx;
+        let searchdata = this._preSearchData.filter((row)=>{
+            return row[idx].toString().toLowerCase().indexOf(needle) > -1;
+        });
+
+        this.setState({data:searchdata});
+    }
+    _download(format,ev){
+        //ev.preventDefault();
+        let contents = null;
+        if(format ==='json'){
+            contents = JSON.stringify(this.state.data);
+        }else{
+            contents = this.state.data.reduce((result,row)=>{
+                return result + row.reduce((rowresult, cell, idx)=>{
+                    return rowresult
+                        +'"'
+                        + cell.replace(/"/g,'""')
+                        + '"'
+                        + (idx < row.length - 1 ? ',' : '');
+
+                },'') + '\n';
+            },'');
+        }
+
+        let URL = window.URL || window.webkitURL;
+        let blob = new Blob([contents],{type:'text/'+format});
+        ev.target.href = URL.createObjectURL(blob);
+        ev.target.download = 'data.' + format;
     }
     _renderTable(){
         return (
@@ -126,7 +164,15 @@ class Excel extends React.Component{
         );
     }
     _renderToolbar(){
-        return <button onClick={this._toggleSearch}>Search</button>;
+        let text = 'Search';
+        if(this.state.search){
+            text = 'Search is active';
+        }
+        return <div>
+            <button onClick={this._toggleSearch}>{text}</button>
+            <a href="data.json" onClick={this._download.bind(this,'json')}>Export JSON</a>
+            <a href="data.csv" onClick={this._download.bind(this,'csv')}>Export CSV</a>
+        </div>;
     }
     _renderSearch(){
         if(!this.state.search){
@@ -134,7 +180,7 @@ class Excel extends React.Component{
         }
         return <tr>
             {this.props.headers.map((_ignore,idx)=><td key={idx}>
-                <input type="text" data-idx={idx} />
+                <input type="text" data-idx={idx} onChange={this._search} />
             </td>)}
         </tr>;
     }
