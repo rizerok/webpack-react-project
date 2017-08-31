@@ -9,7 +9,9 @@ class Suggest extends React.Component{
         };
     }
     getValue(){
-        return this.refs.lowlovelinput.value;
+        return 'value' in this.refs.input
+            ? this.refs.input.value
+            : this.refs.input.getValue();
     }
     render(){
         const randomid = Math.random().toString(16).substring(2);

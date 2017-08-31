@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import classNames from 'classNames';
+import style from './raiting.styl';
 class Rating extends Component{
     constructor(props){
         super(props);
         this.state = {
-            raiting:props.defaultValue,
-            tmpRaiting:props.defaultValue
+            rating:props.defaultValue,
+            tmpRating:props.defaultValue
         };
     }
     getValue(){
         return this.state.rating;
     }
-    setTemp(rationg){
+    setTemp(rating){
         this.setState({
             tmpRating:rating
         });
@@ -31,10 +32,10 @@ class Rating extends Component{
     render(){
         const stars = [];
         for(let i=1;i<=this.props.max;i++){
-            stars.push(<span className={i<=this.state.tmpRating ? 'rating-on':null}
+            stars.push(<span className={i<=this.state.tmpRating ? style.ratingOn:null}
                     key={i} 
                     onClick={!this.props.readonly && this.setRating.bind(this,i)}
-                    onMouseOver={!this.props.readonly && this.setTemp.bind(this)}
+                    onMouseOver={!this.props.readonly && this.setTemp.bind(this,i)}
                 >{'\u2606'}</span>);
         }
         return (

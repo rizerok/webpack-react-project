@@ -17,7 +17,7 @@ function playlist(state = [],action){
 
 const store = createStore(playlist);
 
-window.store = store;
+window.store = store; 
 
 console.log(store.getState());
 
