@@ -1,22 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
-import thunk from 'redux-thunk';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Switch,
-    withRouter
-} from 'react-router-dom';
+//import 'babel-polyfill';
 
-import { getTracks } from './actions/tracks';
-import reducer  from './reducers';
-import About from './About';
-import Track from './Track';
+import reducer from './reducers';
 
-const store = createStore(reducer,applyMiddleware(thunk));
+
+// const initialState = {
+//     tracks:[
+//         'Smells like spirit',
+//         'Enter Sandman'
+//     ],
+//     playlist:[
+//         'My home playlist',
+//         'My work playlist'
+//     ]
+// };
+//
+// function playlist(state = initialState,action){//reducer
+//     console.log(action);
+//     if(action.type === 'ADD_TRACK'){
+//         return {
+//             ...state,
+//             tracks: [...state.tracks,action.payload]
+//         };
+//     }
+//     return state;
+// }
+
+const store = createStore(reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 window.store = store;
 
@@ -62,10 +76,6 @@ class _TrackToolbar extends React.Component{
                     <button onClick={this.findTrack}
                     >Find Track</button>
                 </div>
-                <div>
-                    <button onClick={this.props.onGetTracks}
-                    >Get tracks</button>
-                </div>
             </div>
         );
     }
@@ -85,9 +95,6 @@ const TrackToolbar = connect(
         },
         onFindTrack: (trackName) => {
             dispatch({type: 'FIND_TRACK',payload:trackName});
-        },
-        onGetTracks:()=>{
-            dispatch(getTracks());
         }
     })
 )(_TrackToolbar);
@@ -114,17 +121,10 @@ const TrackList = connect(
 ReactDOM.render((
     <div>
         <Provider store={store}>
-            <div>
-                <TrackToolbar />
-                <TrackList />
-                <Router>
-                    <Switch>
-                        <Route exact path='/' render={()=><h1>Home</h1>}/>
-                        <Route path='/about' component={About} />
-                        <Route path='/track/:id' component={Track} />
-                    </Switch>
-                </Router>
-            </div>
+            <TrackToolbar />
+        </Provider>
+        <Provider store={store}>
+            <TrackList />
         </Provider>
     </div>
 

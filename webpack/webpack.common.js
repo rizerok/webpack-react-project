@@ -43,7 +43,11 @@ module.exports = {
                     options:{
                         presets:[
                             'env',//https://babeljs.io/docs/plugins/preset-env/
-                            'react'
+                            'react',
+                            'stage-3'//https://babeljs.io/docs/plugins/preset-stage-3/
+                        ],
+                        plugins:[
+
                         ],
                         cacheDirectory:true
                     }
