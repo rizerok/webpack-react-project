@@ -18,9 +18,7 @@ import Track from './Track';
 
 const store = createStore(reducer,applyMiddleware(thunk));
 
-window.store = store;
-
-console.log(store.getState());
+//console.log(store.getState());
 
 store.subscribe(()=>{
     console.log('subscribe',store.getState());
@@ -29,7 +27,7 @@ store.subscribe(()=>{
 class _TrackToolbar extends React.Component{
     constructor(props){
         super(props);
-
+        
         this.addTrack = this.addTrack.bind(this);
         this.findTrack = this.findTrack.bind(this);
     }
@@ -77,11 +75,11 @@ const TrackToolbar = connect(
     }),
     dispatch => ({
         onAddTrack: (trackName) => {
-            const payload = {
-                id: Date.now().toString(),
-                name: trackName
-            };
-            dispatch({type: 'ADD_TRACK',payload:payload});
+            // const payload = {
+            //     id: Date.now().toString(),
+            //     name: trackName
+            // };
+            dispatch({type: 'ADD_TRACK',payload:trackName});
         },
         onFindTrack: (trackName) => {
             dispatch({type: 'FIND_TRACK',payload:trackName});
@@ -118,11 +116,15 @@ ReactDOM.render((
                 <TrackToolbar />
                 <TrackList />
                 <Router>
-                    <Switch>
-                        <Route exact path='/' render={()=><h1>Home</h1>}/>
-                        <Route path='/about' component={About} />
-                        <Route path='/track/:id' component={Track} />
-                    </Switch>
+                    <div>
+                        <Link to='/track/0'>0</Link>
+                        <Link to='/track/1'>1</Link>
+                        <Switch>
+                            <Route exact path='/' render={()=><h1>Home</h1>}/>
+                            <Route path='/about' component={About} />
+                            <Route path='/track/:id' component={Track} />
+                        </Switch>
+                    </div>
                 </Router>
             </div>
         </Provider>
