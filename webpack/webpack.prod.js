@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pj = require(path.resolve('package.json'));
+const rupture = require('rupture');
 
 let extractStylus = new ExtractTextPlugin({
     filename: '[name].css'
@@ -19,6 +20,7 @@ module.exports = {
         rules:[
             {
                 test: /\.styl$/,
+                exclude:path.resolve('assets','styles'),
                 use: extractStylus.extract({
                     fallback: 'style-loader',
                     use: [{
@@ -37,8 +39,39 @@ module.exports = {
                         }
                     },
                     {
-                        loader: 'stylus-loader'
+                        loader:'stylus-loader',
+                        options:{
+                            use:[rupture()]
+                        }
                     }]
+                })
+            },
+            {
+                test: /\.styl$/,
+                include:path.resolve('assets','styles'),
+                use: extractStylus.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            minimize:true,
+                            modules: true,
+                            localIdentName: '[hash:base64:8]'
+                        }
+                    },
+                        {
+                            loader: 'postcss-loader',
+                            options:{
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader:'stylus-loader',
+                            options:{
+                                use:[rupture()]
+                            }
+                        }]
                 })
             }
         ]

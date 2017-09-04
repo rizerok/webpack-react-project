@@ -1,0 +1,22 @@
+[
+  {
+    "url":"/",
+    "title":"Home"
+  },
+  {
+    "url":"/about",
+    "title":"About"
+  },
+  {
+    "url":"/page/page1",
+    "title":"Page1"
+  },
+  {
+    "url":"/page/page2",
+    "title":"Page2"
+  },
+  {
+    "url":"/page/page3",
+    "title":"Page3"
+  }
+]
