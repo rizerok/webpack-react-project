@@ -1,4 +1,4 @@
-export const getPage = (slug) => dispatch => {
+export const getPage = (slug) => dispatch => {//actions creator
     setTimeout(()=>{
         
         fetch(`/api/${slug}.json`,{
@@ -7,7 +7,11 @@ export const getPage = (slug) => dispatch => {
             .then(resp=>resp.json())
             .then(page=>{
                 console.log('action with fetch',page);
-                dispatch({type:'GET_PAGE',page});
+                //https://github.com/acdlite/flux-standard-action
+                dispatch({//action
+                    type:'GET_PAGE',
+                    payload:page
+                });
             });
         
     },2000);

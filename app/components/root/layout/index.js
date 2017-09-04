@@ -4,9 +4,6 @@ import RootHeader from '../header';
 import RootFooter from '../footer';
 import Main from 'components/main';
 
-import {
-    BrowserRouter
-} from 'react-router-dom';
 
 class RootLayout extends React.Component{
     constructor(){
@@ -14,19 +11,17 @@ class RootLayout extends React.Component{
     }
     render(){
         return (
-            <BrowserRouter>
-                <div className={style.rootLayout}>
-                    <header className={style.header}>
-                        <RootHeader></RootHeader>
-                    </header>
-                    <main className={style.main}>
-                        <Main></Main>
-                    </main>
-                    <footer className={style.footer}>
-                        <RootFooter></RootFooter>
-                    </footer>
-                </div>
-            </BrowserRouter>
+            <div className={style.rootLayout}>
+                <header className={style.header}>
+                    <RootHeader></RootHeader>
+                </header>
+                <main className={style.main}>
+                    <div>Content</div>
+                </main>
+                <footer className={style.footer}>
+                    <RootFooter></RootFooter>
+                </footer>
+            </div>
         );
     }
 }

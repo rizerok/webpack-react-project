@@ -7,8 +7,8 @@ const initialState = {
 export default function playlist(state = initialState,action){
     switch(action.type){
         case 'GET_PAGE':{
-            console.log('reducer',action.page);
-            return action.page;
+            console.log('reducer',action.payload);
+            return action.payload;
         }
     }
     return state;
