@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import style from './page-router.styl';
 
 import PageDefault from '../default';
-import store from '../store';
+
 
 class PageRouter extends React.Component{
     constructor(props){
@@ -12,9 +12,7 @@ class PageRouter extends React.Component{
     }
     render(){
         return (
-            <Provider store={store}>
-                <Route path="/page/:slug" component={PageDefault} />
-            </Provider>
+            <Route path="/page/:slug" component={PageDefault} />
         );
     }
 }

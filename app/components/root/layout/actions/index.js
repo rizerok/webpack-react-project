@@ -1,19 +1,44 @@
-const initialQueryUrls = [
-    '/api/navigation.json',
-    '/api/company.json'
-];
+export const getCompanyInfo = () => dispatch =>{
+    dispatch({
+        type:'COMPANY_REQUEST'
+    });
+    return fetch('/api/company.json')
+        .then(resp=>resp.json())
+        .then(data=>{
+            console.log(data);
+            return dispatch({
+                type:'COMPANY_RECEIVE',
+                payload:data
+            });
+        });
+};
 
 export const getNav = () => dispatch =>{
     dispatch({
-        type:'REQUEST_NAV'
+        type:'NAV_REQUEST'
     });
-    fetch('/api/navigation.json')
+    return fetch('/api/navigation.json')
         .then(resp=>resp.json())
-        .then(nav=>{
-            console.log(nav);
-            dispatch({
-                type:'RECEIVE_NAV',
-                payload:nav
+        .then(data=>{
+            console.log(data);
+            return dispatch({
+                type:'NAV_RECEIVE',
+                payload:data
             });
         });
+};
+
+export const getPrimaryData = () => dispatch =>{
+    dispatch({
+        type:'PRIMARY_DATA_REQUEST'
+    });
+    return Promise.all([
+        dispatch(getCompanyInfo()),
+        dispatch(getNav())
+    ]).then(data=>{
+        console.log('all',data);
+        return dispatch({
+            type:'PRIMARY_DATA_RECEIVE'
+        });
+    });
 };

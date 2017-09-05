@@ -1,43 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import style from './page-default.styl';
 
 import { getPage } from '../actions/page';
+
+import UiPreloader from 'components/ui/preloader';
 
 class PageDefault extends React.Component{
     constructor(props){
         super(props);
         this.page = null;
-        console.log('constructor',props);
         this.slug = props.match.params.slug;
     }
     getPage(){
-        console.log('getPage',this.page);
         this.props.getPage(this.slug);
     }
     componentWillMount(){
-        console.log('componentWillMount');
         this.getPage();
     }
     componentWillReceiveProps(nextProps){
-        console.log(this.slug,nextProps.match.params.slug);
         if(this.slug !== nextProps.match.params.slug){
             this.slug = nextProps.match.params.slug;
             this.getPage();
         }else{
             this.slug = nextProps.match.params.slug;
         }
-
         this.page = nextProps.page;
-        console.log('componentWillReceiveProps',this.page);
-    }
-    componentDidUpdate(){
-        console.log(this.page.slug);
     }
     render(){
         let content;
-        console.log('render',this.props);
         if(this.page){
             content = (
                 <div>
@@ -46,16 +38,23 @@ class PageDefault extends React.Component{
                 </div>
             );
         }else{
-            content = <div>Loading...</div>;
+            content = <UiPreloader />;
         }
-        return content;
+        return (
+            <div className={style.pageDefault}>
+                {content}
+            </div>
+        );
     }
 }
 
 export default withRouter(connect(
-    state => {
-        console.log('component connect state',state);
-        return state;
+    (state,ownProps) => {
+        const {slug} = ownProps.match.params;
+        const {list} = state.pages;
+        const newState = {page:list.find(p=>p.slug===slug)};
+        console.log('newState',newState);
+        return newState;
     },
     dispatch  => ({
         getPage: (slug) => {

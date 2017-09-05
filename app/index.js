@@ -4,9 +4,9 @@ import 'whatwg-fetch';
 
 import 'styles/style.styl';
 
-import RootLayout from 'components/root/layout';
+import App from 'components/app';
 
 ReactDOM.render(
-    <RootLayout />,
+    <App />,
     document.getElementById('root')
 );

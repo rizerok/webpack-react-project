@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './store';
 import RootLayout from 'components/root/layout/';
 
+window.store = store;
+
 class App extends React.Component{
     constructor(){
         super();

@@ -6,12 +6,13 @@ import NavDropDownList from 'components/nav/drop-down-list';
 
 
 class RootHeader extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        console.log(props);
     }
     render(){
         return (
-            <div>Header</div>
+            <NavDropDownList nav={this.props.nav} />
         );
     }
 }
