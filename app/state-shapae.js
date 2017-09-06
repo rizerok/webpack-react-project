@@ -22,6 +22,9 @@ let stateShape = {
         isFirstFetch:true,
         isFetching:true
     },
+    asideMenu:{
+        open:false
+    },
     pages:{
         list:[
             {
@@ -29,7 +32,6 @@ let stateShape = {
                 title:'Page1',
                 content:'Super page1',
                 isFetching:''
-                
             }
         ]
     },

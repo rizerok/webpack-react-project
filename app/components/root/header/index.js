@@ -3,6 +3,7 @@ import style from './root-header.styl';
 import { Provider } from 'react-redux';
 
 import NavDropDownList from 'components/nav/drop-down-list';
+import NavBurger from 'components/nav/burger';
 
 
 class RootHeader extends React.Component{
@@ -18,6 +19,7 @@ class RootHeader extends React.Component{
                     nav={this.props.nav}
                     active
                 />
+                <NavBurger />
                 <a href={`tel:${phone}`}>{phone}</a>
             </div>
             
