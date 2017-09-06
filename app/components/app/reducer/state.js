@@ -5,7 +5,10 @@ const initialState = {
 export default function(state = initialState,action){
     switch(action.type){
         case 'PRIMARY_DATA_REQUEST':{
-            break;
+            return {
+                ...state,
+                isFetching:true
+            };
         }
         case 'PRIMARY_DATA_RECEIVE':{
             return {

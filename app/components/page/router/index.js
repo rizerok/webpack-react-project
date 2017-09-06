@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import style from './page-router.styl';
 
 import PageDefault from '../default';
-
+console.log('PageDefault',PageDefault);
 
 class PageRouter extends React.Component{
     constructor(props){

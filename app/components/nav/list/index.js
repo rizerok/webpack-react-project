@@ -2,13 +2,12 @@ import React from 'react';
 import { BrowserRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import style from './nav-drop-down-list.styl';
 
-class NavDropDownList extends React.Component{
+import style from './nav-list.styl';
+
+class NavList extends React.Component{
     constructor(props){
         super(props);
-        //this.navList = null;
-        console.log('in nav ',props);
     }
     render(){
         let navList = null;
@@ -29,13 +28,13 @@ class NavDropDownList extends React.Component{
             </ul>;
         }
         return (
-            
-                <nav className={style.navDropDownList}>
-                    {navList}
-                </nav>
-            
+
+            <nav className={style.navDropDownList}>
+                {navList}
+            </nav>
+
         );
     }
 }
 
-export default NavDropDownList;
+export default NavList;

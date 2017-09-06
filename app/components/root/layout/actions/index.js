@@ -36,7 +36,6 @@ export const getPrimaryData = () => dispatch =>{
         dispatch(getCompanyInfo()),
         dispatch(getNav())
     ]).then(data=>{
-        console.log('all',data);
         return dispatch({
             type:'PRIMARY_DATA_RECEIVE'
         });

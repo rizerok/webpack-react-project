@@ -12,6 +12,9 @@ export const getPage = (slug) => (dispatch,getState) => {//actions creator
         });
     }
     //if no find - fetch
+    dispatch({
+        type:'CURRENT_STATE_REQUEST'
+    });
     dispatch({//action
         type:'GET',
         payload:{
@@ -19,14 +22,13 @@ export const getPage = (slug) => (dispatch,getState) => {//actions creator
             source:'cache'
         }
     });
+    
     setTimeout(()=>{
-
-        fetch(`/api/${slug}.json`,{
+        return fetch(`/api/${slug}.json`,{
             method:'GET'
         })
             .then(resp=>resp.json())
             .then(page=>{
-                //console.log('action with fetch',page);
                 //https://github.com/acdlite/flux-standard-action
                 dispatch({//action
                     type:'GET_PAGE',
@@ -35,6 +37,10 @@ export const getPage = (slug) => (dispatch,getState) => {//actions creator
                         source:'fetch'
                     }
                 });
+                dispatch({
+                    type:'CURRENT_STATE_RECEIVE'
+                });
+                console.log(222222);
             });
 
     },2000);

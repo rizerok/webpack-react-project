@@ -30,12 +30,6 @@
     "bottom":true
   },
   {
-    "url":"/page/page3",
-    "title":"Page3",
-    "top":false,
-    "bottom":true
-  },
-  {
     "url":"/page/page4",
     "title":"Page4",
     "top":false,

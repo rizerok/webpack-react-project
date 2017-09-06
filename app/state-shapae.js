@@ -19,17 +19,9 @@ let stateShape = {
         }
     },
     currentState:{
+        isFirstFetch:true,
         isFetching:true
     },
-    // header:{
-    //     navFilter:'header'
-    // },
-    // footer:{
-    //     navFilter:'footer'
-    // },
-    // aside:{
-    //     navFilter:'aside'
-    // },
     pages:{
         list:[
             {

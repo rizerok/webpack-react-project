@@ -11,8 +11,16 @@ class RootHeader extends React.Component{
         console.log(props);
     }
     render(){
+        const {phone} = this.props.company;
         return (
-            <NavDropDownList nav={this.props.nav} />
+            <div className={style.header}>
+                <NavDropDownList
+                    nav={this.props.nav}
+                    active
+                />
+                <a href={`tel:${phone}`}>{phone}</a>
+            </div>
+            
         );
     }
 }
