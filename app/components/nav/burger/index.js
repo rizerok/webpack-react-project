@@ -12,12 +12,10 @@ class NavBurger extends React.Component{
         this.toggle = this.toggle.bind(this);
     }
     toggle(){
-        console.log(3332,this.props);
         const {switchAside,open} = this.props;
         switchAside(!open);
     }
     render(){
-        console.log(this.props,111);
         return (
             <button onClick={this.toggle}
                 className={style.button}>

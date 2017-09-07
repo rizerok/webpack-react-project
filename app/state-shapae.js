@@ -23,7 +23,8 @@ let stateShape = {
         isFetching:true
     },
     asideMenu:{
-        open:false
+        open:false,
+        eventFn:null
     },
     pages:{
         list:[

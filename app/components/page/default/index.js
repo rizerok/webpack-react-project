@@ -53,7 +53,6 @@ export default withRouter(connect(
         const {slug} = ownProps.match.params;
         const {list} = state.pages;
         const newState = {page:list.find(p=>p.slug===slug)};
-        console.log('newState',newState);
         return newState;
     },
     dispatch  => ({

@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import style from './nav-list.styl';

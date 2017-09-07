@@ -5,7 +5,6 @@ export const getCompanyInfo = () => dispatch =>{
     return fetch('/api/company.json')
         .then(resp=>resp.json())
         .then(data=>{
-            console.log(data);
             return dispatch({
                 type:'COMPANY_RECEIVE',
                 payload:data
@@ -20,7 +19,6 @@ export const getNav = () => dispatch =>{
     return fetch('/api/navigation.json')
         .then(resp=>resp.json())
         .then(data=>{
-            console.log(data);
             return dispatch({
                 type:'NAV_RECEIVE',
                 payload:data

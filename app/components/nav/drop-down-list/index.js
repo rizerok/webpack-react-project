@@ -7,8 +7,6 @@ import style from './nav-drop-down-list.styl';
 class NavDropDownList extends React.Component{
     constructor(props){
         super(props);
-        //this.navList = null;
-        console.log('in nav ',props);
     }
     render(){
         let navList = null;
@@ -29,11 +27,9 @@ class NavDropDownList extends React.Component{
             </ul>;
         }
         return (
-            
                 <nav className={style.navDropDownList}>
                     {navList}
                 </nav>
-            
         );
     }
 }

@@ -9,7 +9,6 @@ import NavBurger from 'components/nav/burger';
 class RootHeader extends React.Component{
     constructor(props){
         super(props);
-        console.log(props);
     }
     render(){
         const {phone} = this.props.company;

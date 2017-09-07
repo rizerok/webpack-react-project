@@ -40,7 +40,6 @@ export const getPage = (slug) => (dispatch,getState) => {//actions creator
                 dispatch({
                     type:'CURRENT_STATE_RECEIVE'
                 });
-                console.log(222222);
             });
 
     },2000);

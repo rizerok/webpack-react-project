@@ -8,6 +8,7 @@ import RootHeader from '../header';
 import RootFooter from '../footer';
 import Main from 'components/main';
 import UiPreloader from 'components/ui/preloader';
+import RootAside from '../aside';
 
 import { getPrimaryData } from './actions';
 
@@ -16,13 +17,12 @@ class RootLayout extends React.Component{
         super(props);
     }
     componentWillMount(){
-        this.props.getPrimaryData().then(()=>console.log('data have been received'));
+        this.props.getPrimaryData();
         this.navList = [];
     }
     componentWillReceiveProps(nextProps){
         this.navList = nextProps.nav.list;
         this.splitNavData();
-        console.log('componentWillReceiveProps',this.props);
     }
     splitNavData(){
         this.navHeader = this.navList.filter(n=>n.top);
@@ -33,6 +33,7 @@ class RootLayout extends React.Component{
         const loading = state.isFetching || currentState.isFirstFetch;
         return (
             <div className={style.container}>
+                <RootAside />
                 <div className={classnames(
                     style.layout,
                     {
