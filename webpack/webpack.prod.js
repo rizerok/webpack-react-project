@@ -7,7 +7,7 @@ const pj = require(path.resolve('package.json'));
 const rupture = require('rupture');
 
 let extractStylus = new ExtractTextPlugin({
-    filename: '[name].css'
+    filename:path.join('bundle','[name].css')
 });
 
 module.exports = {
