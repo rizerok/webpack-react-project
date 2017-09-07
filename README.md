@@ -1,6 +1,6 @@
-webpack-react-project v0.0.1
+react-spa-project v1.0.0
 ===================
-
+Config for projects based on react.
 
 Install:
 -------------------

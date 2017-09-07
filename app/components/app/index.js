@@ -3,9 +3,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import store from './store';
-import RootLayout from 'components/root/layout/';
-
-window.store = store;
 
 class App extends React.Component{
     constructor(){
@@ -15,7 +12,7 @@ class App extends React.Component{
         return (
             <Provider store={store}>
                 <BrowserRouter>
-                    <RootLayout></RootLayout>
+                    <div>My app</div>
                 </BrowserRouter>
             </Provider>
         );

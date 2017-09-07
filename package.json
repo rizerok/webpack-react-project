@@ -1,8 +1,8 @@
 {
-  "name": "webpack-react-project",
-  "version": "0.0.1",
-  "description": "",
-  "main": "app/app.js",
+  "name": "react-spa-project",
+  "version": "1.0.0",
+  "description": "Config for projects based on react.",
+  "main": "app/index.js",
   "scripts": {
     "build:dev": "webpack --progress --env=dev",
     "build:prod": "webpack --progress --env=prod",
